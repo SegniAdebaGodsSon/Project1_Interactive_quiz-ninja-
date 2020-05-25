@@ -21,18 +21,29 @@ form.addEventListener('submit', e => {
     scrollTo(0, 0); // (x, y) coordinate
     
     
-    // update DOM, show result on page
-    showResult.querySelector('span').textContent = `${score}%`;
+    
     
     // doesn't work, guess the bootstrap style > inline style
-    // showResult.style.display = 'block'; 
-    
+    // showResult.style.display = 'block';
+
     showResult.classList.remove('d-none');
     
+    // some fancy "animation"
+    let output = 0;
+    //just a fancy loop with a timer for it's iterations
+    const timer = setInterval(() => {
+        // update DOM, show result on page
+        showResult.querySelector('span').textContent = `${output}%`;
+        if (output === score){
+            clearInterval(timer);
+        }else{
+            output++;
+        }
+        
+        }, 15);
     
 });
 
 // window object ... we don't need to sat window.method every time
 // window.console.log('hello');
 // console.log('hello'); // same as above
-
